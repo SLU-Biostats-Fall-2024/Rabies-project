@@ -4,6 +4,10 @@ format: html
 editor: visual
 ---
 
+## Rabies project - Key
+
+Please note that there are as many ways to do something in R as there are users of R. Your solutions should be focused on using the methods we are learning in Chapter 3 of GSWR.
+
 ## Rabies project
 
 You are receiving a dataset from the New York State Department of Health that shows test results for specimens submitted to be tested for rabies.
@@ -121,3 +125,5 @@ slc_mean <-SLC %>%
     mean_percent = mean(Percent_pos)) %>% 
   arrange(desc(highest_percent))
 ```
+
+When you are finished, from the branch on which you are working, commit your changes and open a pull request to have the changes integrated into the repository you forked.
