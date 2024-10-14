@@ -47,14 +47,11 @@ rabies |> mutate(Percent_pos = (Positive.Samples/Number.of.Samples)*100)
 
 3.  In what year was the highest total number of sample submissions received? (Hint: you might want the `sum()` function)
 
+
 4.  In what year and in what county was the highest positive number of samples received?
 
 5.  How many rows of data are there that include submissions from bats for which the samples were positive for rabies? For which the samples were not positive for rabies?
 
-```{r}
-bat_pos <- rabies |> 
-  filter(Animal.Classification == "Bat", Positive.Samples >=1)
-```
 
 6.  How many animal types were there for which, in instances in which there were more than 4 samples submitted at a time, the percent of positive samples was greater than 50%?
 
@@ -66,8 +63,8 @@ SLC <- rabies |>
 
 SLC_animals <- SLC |> group_by(Received.Year, Animal.Classification) |>
   summarise(
-    total_year = Number.of.Samples,
-    pos_year = Positive.Samples,
+    total_year = sum(Number.of.Samples),
+    pos_year = sum(Positive.Samples),
     perc_pos = (pos_year/total_year) * 100
   )
 ```
