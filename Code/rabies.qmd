@@ -14,6 +14,7 @@ Your goals are twofold:
 -   To learn something about rabies in New York.
 
 ## Set things up and read in the data
+
 ```{r}
 rm(list = ls())
 library(tidyverse)
@@ -23,32 +24,33 @@ library(here)
 Add the code to set up the workspace
 
 Now read in the data and name it as an object called `rabies`.
+
 ```{r}
 rabies <-read.csv(here("Data", "Rabies_Laboratory_Submissions.csv"))
 ```
-
 
 ## Get started
 
 Use a combination of filter, select, slice, arrange, group_by, summarize, mutate or any other functions covered in Chapter 3 of GSWR to answer the following questions about this data set.
 
 1.  After you read in all of the data, create a new data frame called rabies that includes just the first 7 columns (omit latitude, longitude and geocode information) from the original dataset.
+
 ```{r}
 rabies<- rabies %>% select(1:7)
 ```
 
+2.  Create a new column in your dataset called "Percent\_ pos" and set it equal to (number of positive samples / number of samples)\*100.
 
-2.  Create a new column in your dataset called "Percent_    pos" and set it equal to (number of positive samples / number of samples)\*100.
 ```{r}
 rabies<- rabies %>% mutate(
   Percent_pos =  (Positive.Samples/Number.of.Samples)*100)
 
 ```
 
-
 *After you have taken care of tasks 1 and 2, you may wish to divide up the work among your group members by assigning different questions to different team members. **Each team member should work from a different branch on the project and should submit their suggested changes via a pull request.***
 
 3.  In what year was the highest total number of sample submissions received? (Hint: you might want the `sum()` function)
+
 ```{r}
 rabies %>% 
   group_by(Received.Year) %>%
@@ -57,6 +59,7 @@ rabies %>%
 ```
 
 4.  In what year and in what county was the highest positive number of samples received?
+
 ```{r}
 rabies %>% 
   group_by(Received.Year, County.Name) %>% 
@@ -66,6 +69,7 @@ View()
 ```
 
 5.  How many rows of data are there that include submissions from bats for which the samples were positive for rabies? For which the samples were not positive for rabies?
+
 ```{r}
 rabies %>%
   filter(Animal.Classification == "Bat" , Positive.Samples>0)
@@ -76,6 +80,7 @@ filter(Animal.Classification == "Bat" , Positive.Samples == 0)
 ```
 
 6.  How many animal types were there for which, in instances in which there were more than 4 samples submitted at a time, the percent of positive samples was greater than 50%?
+
 ```{r}
 rabies %>% 
   select(Animal.Classification,Percent_pos, Number.of.Samples) %>% 
@@ -86,11 +91,12 @@ rabies %>%
 ```
 
 7.  Create a new dataset that includes only data from St. Lawrence County and name it SLC. Next, calculate, by Animal.Classification, the total number of submissions per year, the total number of positive submissions per year, and then the percent positive per year based on those two totals. Save your results in a new data frame called SLC_animals.
+
 ```{r}
 SLC<- rabies %>% filter(County.Name == "St. Lawrence")
 
 SLC_animals <- SLC %>% 
-  group_by(Received.Year, Animal.Classification) %>% 
+  group_by(Animal.Classification) %>% 
   summarise(
     total_pos = sum(Positive.Samples),
     sub_total = sum(Number.of.Samples),
@@ -99,12 +105,14 @@ View()
 ```
 
 8.  Create a new dataset that includes only data from St. Lawrence County from 2020 to present. Name the dataset `SLC_recent`.
+
 ```{r}
 SLC_recent <- rabies %>% 
   filter(County.Name == "St. Lawrence", Received.Year > 2019)
 ```
 
 9.  What was the animal type for which the highest percent of submitted samples tested positive by year in your St. Lawrence County dataset? What is the average percent positive by year?
+
 ```{r}
 mean_slc <- SLC %>%
   group_by(Animal.Classification, Received.Year) %>%
