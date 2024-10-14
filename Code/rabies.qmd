@@ -58,14 +58,29 @@ rabies <- read.csv(here("data", "Rabies_Laboratory_Submissions.csv"))
 ```
 
 ```{r}
+# question 2
 rabies <- rabies %>% select(1:7)
 rabies <- rabies %>% mutate ( Percent_pos = (Positive.Samples/Number.of.Samples)*100)
 ```
 
 ```{r}
+#question 3
 rabies %>% 
-  group_by(Recieved.Year) %>%
-  summarise(num)
+  group_by(Received.Year) %>% 
+  summarise(num.recieved = sum(Number.of.Samples)) 
+## 2008 had the most number of sample submissions 
 
+
+```
+
+```{r}
+# question 4
+rabies %>% 
+  group_by(Received.Year, County.Name) %>%
+  summarise(positive.num.samples = sum(Positive.Samples)) %>% 
+  arrange(positive.num.samples)
+  view()
+
+## 2008 in Tompkins was the highest number of positive samples
 
 ```
