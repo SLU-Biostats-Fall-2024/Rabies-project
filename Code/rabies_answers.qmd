@@ -5,7 +5,6 @@ editor: visual
 ---
 
 ## Rabies project - Key
-
 Please note that there are as many ways to do something in R as there are users of R. **Your solutions should be focused on using the methods we are learning in Chapter 3 of GSWR.**
 
 ## Rabies project
@@ -127,3 +126,4 @@ slc_mean <-SLC %>%
 ```
 
 When you have finished working on your questions, save your changes and commit them. Working from your branch (and not *main*), push your changes to your repository and then open a Pull Request to have the changes incorporated into your group repository.
+
