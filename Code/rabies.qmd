@@ -25,7 +25,7 @@ Use a combination of filter, select, slice, arrange, group_by, summarize, mutate
 
 1.  After you read in all of the data, create a new data frame called rabies that includes just the first 7 columns (omit latitude, longitude and geocode information) from the original dataset.
 
-2.  Create a new column in your dataset called "Percent_pos" and set it equal to (number of positive samples / number of samples)\*100.
+2.  Create a new column in your dataset called "Percent_pos" and set it equal to the (number of positive samples / number of samples)\*100.
 
 *After you have taken care of tasks 1 and 2, you may wish to divide up the work among your group members by assigning different questions to different team members. Each team member should work from a different branch on the project and should submit their suggested changes via a pull request.*
 
@@ -43,4 +43,6 @@ Use a combination of filter, select, slice, arrange, group_by, summarize, mutate
 
 9.  What was the animal type for which the highest percent of submitted samples tested positive by year in your St. Lawrence County dataset? What is the average percent positive by year?
 
+
 When you have finished working on your questions, save your changes and commit them. Working from your branch (and not *main*), push your changes to your repository and then open a Pull Request to have the changes incorporated into your group repository.
+
